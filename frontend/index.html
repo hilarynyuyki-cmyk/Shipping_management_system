@@ -3,80 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarineOS — Maritime Shipping System</title>
-  <link rel="stylesheet" href="Style.css" />
+  <title>MarineOS — Maritime Shipping Management System</title>
+  <link rel="stylesheet" href="./css/Style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+
 <div class="app" id="app">
+
+  <!-- ═══════════════════════ SIDEBAR ═══════════════════════ -->
   <aside class="sidebar" id="sidebar">
 
     <div class="sidebar-logo">
+      <div class="logo-anchor">⚓</div>
       <div class="logo-mark">MARINEOS</div>
       <!-- <div class="logo-sub">Group 4 · Maritime Shipping System</div> -->
     </div>
 
     <nav class="sidebar-nav">
       <div class="nav-section">Operations</div>
-      <div class="nav-item active" data-page="dashboard">
-        <span class="nav-icon">⬡</span>
-        <span>Dashboard</span>
-      </div>
-      <div class="nav-item" data-page="vessels">
-        <span class="nav-icon">🚢</span>
-       <span>Vessels</span>
-      </div>
-      <div class="nav-item" data-page="voyages">
-        <span class="nav-icon">🗺</span>
-        <span>Voyages</span>
-      </div>
-      <div class="nav-item" data-page="gps">
-        <span class="nav-icon">📡</span>
-        <span>GPS Tracker</span>
-      </div>
+      <div class="nav-item active" data-page="dashboard"><span class="nav-icon">⬡</span><span>Dashboard</span></div>
+      <div class="nav-item" data-page="vessels"><span class="nav-icon">🚢</span><span>Vessels</span></div>
+      <div class="nav-item" data-page="voyages"><span class="nav-icon">🗺</span><span>Voyages</span></div>
+      <div class="nav-item" data-page="gps"><span class="nav-icon">📡</span><span>GPS Tracker</span></div>
 
       <div class="nav-section">Cargo</div>
-      <div class="nav-item" data-page="shipments">
-        <span class="nav-icon">📦</span>
-        <span>Shipments</span>
-        <span class="nav-badge" id="badge-shipments">0</span>
-      </div>
-      <div class="nav-item" data-page="containers">
-        <span class="nav-icon">🗃</span>
-        <span>Containers</span>
-      </div>
-      <div class="nav-item" data-page="manifests">
-        <span class="nav-icon">📋</span>
-        <span>Cargo Manifest</span>
-      </div>
+      <div class="nav-item" data-page="shipments"><span class="nav-icon">📦</span><span>Shipments</span><span class="nav-badge" id="badge-shipments">0</span></div>
+      <div class="nav-item" data-page="containers"><span class="nav-icon">🗃</span><span>Containers</span></div>
+      <div class="nav-item" data-page="manifests"><span class="nav-icon">📋</span><span>Cargo Manifest</span></div>
+      <div class="nav-item" data-page="warehouses"><span class="nav-icon">🏭</span><span>Warehouses</span><span class="nav-badge nav-badge-new">NEW</span></div>
 
       <div class="nav-section">Documents</div>
-      <div class="nav-item" data-page="bol">
-        <span class="nav-icon">📄</span>
-        <span>Bills of Lading</span>
-      </div>
-      <div class="nav-item" data-page="invoices">
-        <span class="nav-icon">💳</span>
-        <span>Freight Invoices</span>
-      </div>
-      <div class="nav-item" data-page="customs">
-        <span class="nav-icon">🛃</span>
-        <span>Customs Clearance</span>
-      </div>
+      <div class="nav-item" data-page="bol"><span class="nav-icon">📄</span><span>Bills of Lading</span></div>
+      <div class="nav-item" data-page="invoices"><span class="nav-icon">💳</span><span>Freight Invoices</span></div>
+      <div class="nav-item" data-page="customs"><span class="nav-icon">🛃</span><span>Customs Clearance</span></div>
 
       <div class="nav-section">Management</div>
-      <div class="nav-item" data-page="ports">
-        <span class="nav-icon">⚓</span>
-        <span>Ports</span>
-      </div>
-      <div class="nav-item" data-page="customers">
-        <span class="nav-icon">👤</span>
-        <span>Customers</span>
-      </div>
-      <div class="nav-item" data-page="employees">
-        <span class="nav-icon">👷</span>
-        <span>Employees</span>
-      </div>
+      <div class="nav-item" data-page="ports"><span class="nav-icon">⚓</span><span>Ports</span></div>
+      <div class="nav-item" data-page="customers"><span class="nav-icon">👤</span><span>Customers</span></div>
+      <div class="nav-item" data-page="employees"><span class="nav-icon">👷</span><span>Employees</span></div>
     </nav>
 
     <div class="sidebar-footer">
@@ -89,7 +54,10 @@
       </div>
     </div>
   </aside>
+
+  <!-- ═══════════════════════ MAIN ═══════════════════════ -->
   <main class="main">
+
     <div class="topbar">
       <button class="menu-btn" id="menu-btn" onclick="toggleSidebar()">☰</button>
       <div class="topbar-title" id="topbar-title">DASHBOARD</div>
@@ -101,6 +69,8 @@
         <button class="btn btn-primary" onclick="openAddModal()">+ Add New</button>
       </div>
     </div>
+
+    <!-- ══════ DASHBOARD ══════ -->
     <div class="page active" id="page-dashboard">
       <div class="page-header">
         <div>
@@ -108,460 +78,204 @@
           <!-- <div class="page-subtitle">Maritime Shipping Management System · Group 4 · May 2026</div> -->
         </div>
       </div>
-
       <!-- <div class="cia-bar">
         <span class="cia-label">CIA TRIAD:</span>
         <span class="cia-pill cia-c">C — CONFIDENTIALITY</span>
         <span class="cia-pill cia-i">I — INTEGRITY</span>
         <span class="cia-pill cia-a">A — AVAILABILITY</span>
       </div> -->
-
       <div class="stats-grid">
-        <div class="stat-card c-accent">
-          <div class="stat-label">Active Vessels</div>
-          <div class="stat-value" id="stat-vessels">—</div>
-          <div class="stat-change stat-up">Fleet registered</div>
-        </div>
-        <div class="stat-card c-blue">
-          <div class="stat-label">Voyages</div>
-          <div class="stat-value" id="stat-voyages">—</div>
-          <div class="stat-change stat-up">Scheduled</div>
-        </div>
-        <div class="stat-card c-amber">
-          <div class="stat-label">Total Shipments</div>
-          <div class="stat-value" id="stat-shipments">—</div>
-          <div class="stat-change stat-up">This month</div>
-        </div>
-        <div class="stat-card c-green">
-          <div class="stat-label">Customers</div>
-          <div class="stat-value" id="stat-customers">—</div>
-          <div class="stat-change stat-up">Registered</div>
-        </div>
-        <div class="stat-card c-red">
-          <div class="stat-label">Pending Customs</div>
-          <div class="stat-value" id="stat-customs">—</div>
-          <div class="stat-change stat-down">Awaiting clearance</div>
-        </div>
+        <div class="stat-card c-blue"><div class="stat-label">Vessels</div><div class="stat-value" id="stat-vessels">—</div><div class="stat-change stat-up">Fleet registered</div></div>
+        <div class="stat-card c-navy"><div class="stat-label">Voyages</div><div class="stat-value" id="stat-voyages">—</div><div class="stat-change stat-up">Scheduled</div></div>
+        <div class="stat-card c-light"><div class="stat-label">Shipments</div><div class="stat-value" id="stat-shipments">—</div><div class="stat-change stat-up">This month</div></div>
+        <div class="stat-card c-teal"><div class="stat-label">Customers</div><div class="stat-value" id="stat-customers">—</div><div class="stat-change stat-up">Registered</div></div>
+        <div class="stat-card c-warn"><div class="stat-label">Pending Customs</div><div class="stat-value" id="stat-customs">—</div><div class="stat-change stat-down">Awaiting clearance</div></div>
+        <div class="stat-card c-warehouse"><div class="stat-label">Warehouses</div><div class="stat-value" id="stat-warehouses">—</div><div class="stat-change stat-up">Operational</div></div>
       </div>
-
       <div class="dash-grid">
         <div class="table-card">
-          <div class="table-header">
-            <div class="table-title">Recent Shipments</div>
-          </div>
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>ID</th><th>Customer</th><th>Route</th><th>Status</th>
-              </tr>
-            </thead>
-            <tbody id="recent-shipments-body">
-              <tr class="loading-row"><td colspan="4"><span class="spinner"></span> Loading...</td></tr>
-            </tbody>
-          </table>
+          <div class="table-header"><div class="table-title">Recent Shipments</div></div>
+          <table class="data-table"><thead><tr><th>ID</th><th>Customer</th><th>Route</th><th>Warehouse</th><th>Status</th></tr></thead>
+          <tbody id="recent-shipments-body"><tr class="loading-row"><td colspan="5"><span class="spinner"></span> Loading...</td></tr></tbody></table>
         </div>
-
         <div class="table-card">
-          <div class="table-header">
-            <div class="table-title">Tracking Events</div>
-          </div>
-          <div id="activity-list">
-            <div class="loading-state"><span class="spinner"></span> Loading...</div>
-          </div>
+          <div class="table-header"><div class="table-title">Tracking Events</div></div>
+          <div id="activity-list"><div class="loading-state"><span class="spinner"></span> Loading...</div></div>
         </div>
       </div>
     </div>
 
-    <!-- ═════════════════════════════
-         PAGE: VESSELS
-    ═════════════════════════════ -->
-      <div class="page" id="page-vessels">
-      <div class="page-header">
-        <div>
-          <div class="page-title">VESSELS</div>
-          <div class="page-subtitle">Fleet management · All registered vessels</div>
-        </div>
-        <button class="btn btn-primary" onclick="openModal('vessel')">+ Register Vessel</button>
-      </div>
+    <!-- ══════ VESSELS ══════ -->
+    <div class="page" id="page-vessels">
+      <div class="page-header"><div><div class="page-title">VESSELS</div><div class="page-subtitle">Fleet management · All registered vessels</div></div><button class="btn btn-primary" onclick="openModal('vessel')">+ Register Vessel</button></div>
       <div class="table-card">
-        <div class="table-header">
-          <div class="table-title">Fleet Registry</div>
-          <div class="table-actions">
-            <div class="search-box">
-              <span>⌕</span>
-              <input type="text" placeholder="Search vessels..." oninput="filterTable('vessels-body', this.value)" />
-            </div>
-          </div>
-        </div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>IMO Number</th><th>Vessel Name</th><th>Type</th>
-              <th>Flag</th><th>Capacity (TEU)</th><th>Status</th><th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="vessels-body">
-            <tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr>
-          </tbody>
-        </table>
-        <div class="pagination">
-          <span id="vessels-count">Loading...</span>
-        </div>
+        <div class="table-header"><div class="table-title">Fleet Registry</div><div class="table-actions"><div class="search-box"><span>⌕</span><input type="text" placeholder="Search vessels..." oninput="filterTable('vessels-body',this.value)" /></div></div></div>
+        <table class="data-table"><thead><tr><th>IMO Number</th><th>Vessel Name</th><th>Type</th><th>Flag</th><th>Capacity (TEU)</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="vessels-body"><tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr></tbody></table>
+        <div class="pagination"><span id="vessels-count">Loading...</span></div>
       </div>
     </div>
-   
 
-    <!-- ═════════════════════════════
-         PAGE: VOYAGES
-    ═════════════════════════════ -->
+    <!-- ══════ VOYAGES ══════ -->
     <div class="page" id="page-voyages">
-      <div class="page-header">
-        <div>
-          <div class="page-title">VOYAGES</div>
-          <div class="page-subtitle">All scheduled and active voyages</div>
-        </div>
-        <button class="btn btn-primary" onclick="openModal('voyage')">+ Schedule Voyage</button>
-      </div>
+      <div class="page-header"><div><div class="page-title">VOYAGES</div><div class="page-subtitle">All scheduled and active voyages</div></div><button class="btn btn-primary" onclick="openModal('voyage')">+ Schedule Voyage</button></div>
       <div class="table-card">
-        <div class="table-header">
-          <div class="table-title">Voyage Log</div>
-          <div class="table-actions">
-            <div class="search-box">
-              <span>⌕</span>
-              <input type="text" placeholder="Search voyages..." oninput="filterTable('voyages-body', this.value)" />
-            </div>
-          </div>
-        </div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Code</th><th>Vessel</th><th>Route</th>
-              <th>Departure</th><th>ETA</th><th>Distance</th><th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="voyages-body">
-            <tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr>
-          </tbody>
-        </table>
+        <div class="table-header"><div class="table-title">Voyage Log</div><div class="table-actions"><div class="search-box"><span>⌕</span><input type="text" placeholder="Search voyages..." oninput="filterTable('voyages-body',this.value)" /></div></div></div>
+        <table class="data-table"><thead><tr><th>Code</th><th>Vessel</th><th>Route</th><th>Departure</th><th>ETA</th><th>Distance</th><th>Status</th></tr></thead>
+        <tbody id="voyages-body"><tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr></tbody></table>
       </div>
     </div>
 
-    <!-- ═════════════════════════════
-         PAGE: GPS TRACKER
-    ═════════════════════════════ -->
+    <!-- ══════ GPS ══════ -->
     <div class="page" id="page-gps">
-      <div class="page-header">
-        <div>
-          <div class="page-title">GPS TRACKER</div>
-          <div class="page-subtitle">Real-time vessel positions · ETA = Distance ÷ Speed</div>
-        </div>
-        <button class="btn btn-ghost" onclick="loadGPS()">↺ Refresh</button>
-      </div>
+      <div class="page-header"><div><div class="page-title">GPS TRACKER</div><div class="page-subtitle">Real-time vessel positions · ETA = Distance ÷ Speed</div></div><button class="btn btn-ghost" onclick="loadGPS()">↺ Refresh</button></div>
       <div class="gps-card">
         <div class="gps-map" id="gps-map"></div>
         <div class="gps-info">
-          <div>
-            <div class="gps-stat-label">Selected Vessel</div>
-            <div class="gps-stat-value" id="gps-vessel">—</div>
-          </div>
-          <div>
-            <div class="gps-stat-label">Coordinates</div>
-            <div class="gps-stat-value" id="gps-coords">—</div>
-          </div>
-          <div>
-            <div class="gps-stat-label">Speed (knots)</div>
-            <div class="gps-stat-value" id="gps-speed">—</div>
-          </div>
-          <div>
-            <div class="gps-stat-label">Heading</div>
-            <div class="gps-stat-value" id="gps-heading">—</div>
-          </div>
+          <div><div class="gps-stat-label">Selected Vessel</div><div class="gps-stat-value" id="gps-vessel">—</div></div>
+          <div><div class="gps-stat-label">Coordinates</div><div class="gps-stat-value" id="gps-coords">—</div></div>
+          <div><div class="gps-stat-label">Speed (knots)</div><div class="gps-stat-value" id="gps-speed">—</div></div>
+          <div><div class="gps-stat-label">Heading</div><div class="gps-stat-value" id="gps-heading">—</div></div>
         </div>
       </div>
       <div class="table-card">
         <div class="table-header"><div class="table-title">Position Log</div></div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Vessel</th><th>Voyage</th><th>Latitude</th>
-              <th>Longitude</th><th>Speed (kts)</th><th>Heading°</th><th>Recorded At</th>
-            </tr>
-          </thead>
-          <tbody id="gps-body">
-            <tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr>
-          </tbody>
-        </table>
+        <table class="data-table"><thead><tr><th>Vessel</th><th>Voyage</th><th>Latitude</th><th>Longitude</th><th>Speed (kts)</th><th>Heading°</th><th>Recorded At</th></tr></thead>
+        <tbody id="gps-body"><tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr></tbody></table>
       </div>
     </div>
 
-    <!-- ═════════════════════════════
-         PAGE: SHIPMENTS
-    ═════════════════════════════ -->
+    <!-- ══════ SHIPMENTS ══════ -->
     <div class="page" id="page-shipments">
+      <div class="page-header"><div><div class="page-title">SHIPMENTS</div><div class="page-subtitle">All cargo bookings · ACID: Shipment + Invoice together · Warehouse link included</div></div><button class="btn btn-primary" onclick="openModal('shipment')">+ Book Shipment</button></div>
+      <div class="table-card">
+        <div class="table-header"><div class="table-title">Shipment Registry</div><div class="table-actions"><div class="search-box"><span>⌕</span><input type="text" placeholder="Search shipments..." oninput="filterTable('shipments-body',this.value)" /></div></div></div>
+        <table class="data-table"><thead><tr><th>ID</th><th>Customer</th><th>Voyage</th><th>Cargo Type</th><th>Weight (kg)</th><th>Warehouse</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="shipments-body"><tr class="loading-row"><td colspan="8"><span class="spinner"></span> Loading...</td></tr></tbody></table>
+      </div>
+    </div>
+
+    <!-- ══════ WAREHOUSES (NEW) ══════ -->
+    <div class="page" id="page-warehouses">
       <div class="page-header">
         <div>
-          <div class="page-title">SHIPMENTS</div>
-          <div class="page-subtitle">All cargo bookings · ACID transaction: Shipment + Invoice together</div>
+          <div class="page-title">WAREHOUSES <span class="new-tag">★ NEW ENTITY</span></div>
+          <div class="page-subtitle">Storage facilities at ports</div>
         </div>
-        <button class="btn btn-primary" onclick="openModal('shipment')">+ Book Shipment</button>
+        <button class="btn btn-primary" onclick="openModal('warehouse')">+ Add Warehouse</button>
+      </div>
+      <!-- <div class="cia-bar">
+        <span class="cia-label">Why this entity was added:</span>
+        <span class="cia-pill cia-a">A — Tracks cargo when not at sea</span>
+        <span class="cia-pill cia-i">I — Load vs capacity CHECK constraint</span>
+        <span class="cia-pill cia-c">C — Manager role access control</span>
+      </div> -->
+      <div class="stats-grid" id="warehouse-stats">
+        <div class="stat-card c-blue"><div class="stat-label">Total Warehouses</div><div class="stat-value" id="wh-total">—</div></div>
+        <div class="stat-card c-teal"><div class="stat-label">Operational</div><div class="stat-value" id="wh-operational">—</div></div>
+        <div class="stat-card c-warn"><div class="stat-label">Full</div><div class="stat-value" id="wh-full">—</div></div>
+        <div class="stat-card c-navy"><div class="stat-label">Total Capacity (t)</div><div class="stat-value" id="wh-capacity">—</div></div>
       </div>
       <div class="table-card">
-        <div class="table-header">
-          <div class="table-title">Shipment Registry</div>
-          <div class="table-actions">
-            <div class="search-box">
-              <span>⌕</span>
-              <input type="text" placeholder="Search shipments..." oninput="filterTable('shipments-body', this.value)" />
-            </div>
-          </div>
-        </div>
+        <div class="table-header"><div class="table-title">Warehouse Registry</div><div class="table-actions"><div class="search-box"><span>⌕</span><input type="text" placeholder="Search warehouses..." oninput="filterTable('warehouses-body',this.value)" /></div></div></div>
         <table class="data-table">
-          <thead>
-            <tr>
-              <th>ID</th><th>Customer</th><th>Voyage</th>
-              <th>Cargo Type</th><th>Weight (kg)</th><th>Booked</th><th>Status</th><th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="shipments-body">
-            <tr class="loading-row"><td colspan="8"><span class="spinner"></span> Loading...</td></tr>
-          </tbody>
+          <thead><tr><th>Code</th><th>Name</th><th>Port</th><th>Type</th><th>Capacity (t)</th><th>Current Load</th><th>Manager</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="warehouses-body"><tr class="loading-row"><td colspan="9"><span class="spinner"></span> Loading...</td></tr></tbody>
+        </table>
+      </div>
+      <div class="table-card">
+        <div class="table-header"><div class="table-title">Shipments Currently In Warehouse</div></div>
+        <table class="data-table">
+          <thead><tr><th>Shipment ID</th><th>Customer</th><th>Warehouse</th><th>Cargo Type</th><th>Weight (kg)</th><th>Status</th></tr></thead>
+          <tbody id="wh-shipments-body"><tr class="loading-row"><td colspan="6"><span class="spinner"></span> Loading...</td></tr></tbody>
         </table>
       </div>
     </div>
 
-    <!-- ═════════════════════════════
-         PAGE: CONTAINERS
-    ═════════════════════════════ -->
+    <!-- ══════ CONTAINERS ══════ -->
     <div class="page" id="page-containers">
-      <div class="page-header">
-        <div>
-          <div class="page-title">CONTAINERS</div>
-          <div class="page-subtitle">All shipping containers · Weight CHECK constraints enforced</div>
-        </div>
-      </div>
+      <div class="page-header"><div><div class="page-title">CONTAINERS</div><div class="page-subtitle">All containers · warehouse_id added · In Warehouse status added</div></div></div>
       <div class="table-card">
         <div class="table-header"><div class="table-title">Container Registry</div></div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Code</th><th>Type</th><th>Max Weight</th>
-              <th>Current Weight</th><th>Shipment</th><th>Vessel</th><th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="containers-body">
-            <tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr>
-          </tbody>
-        </table>
+        <table class="data-table"><thead><tr><th>Code</th><th>Type</th><th>Max Weight</th><th>Current Weight</th><th>Shipment</th><th>Vessel</th><th>Warehouse</th><th>Status</th></tr></thead>
+        <tbody id="containers-body"><tr class="loading-row"><td colspan="8"><span class="spinner"></span> Loading...</td></tr></tbody></table>
       </div>
     </div>
 
-    <!-- ═════════════════════════════
-         PAGE: CARGO MANIFEST
-    ═════════════════════════════ -->
+    <!-- ══════ MANIFESTS ══════ -->
     <div class="page" id="page-manifests">
-      <div class="page-header">
-        <div>
-          <div class="page-title">CARGO MANIFEST</div>
-          <div class="page-subtitle">Official cargo lists per voyage · hazmat_flag + chk_hazmat enforced</div>
-        </div>
-      </div>
+      <div class="page-header"><div><div class="page-title">CARGO MANIFEST</div><div class="page-subtitle">Official cargo lists per voyage · hazmat_flag + chk_hazmat enforced</div></div></div>
       <div class="table-card">
         <div class="table-header"><div class="table-title">Manifest Registry</div></div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>ID</th><th>Voyage</th><th>Container</th>
-              <th>Cargo Description</th><th>Weight (kg)</th><th>Hazmat</th><th>Class</th>
-            </tr>
-          </thead>
-          <tbody id="manifests-body">
-            <tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr>
-          </tbody>
-        </table>
+        <table class="data-table"><thead><tr><th>ID</th><th>Voyage</th><th>Container</th><th>Cargo Description</th><th>Weight (kg)</th><th>Hazmat</th><th>Class</th></tr></thead>
+        <tbody id="manifests-body"><tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr></tbody></table>
       </div>
     </div>
 
-    <!-- ═════════════════════════════
-         PAGE: BILLS OF LADING
-    ═════════════════════════════ -->
+    <!-- ══════ BOL ══════ -->
     <div class="page" id="page-bol">
-      <div class="page-header">
-        <div>
-          <div class="page-title">BILLS OF LADING</div>
-          <div class="page-subtitle">Legal cargo documents · Locked after sign-off · CIA Integrity</div>
-        </div>
-      </div>
+      <div class="page-header"><div><div class="page-title">BILLS OF LADING</div><div class="page-subtitle">Legal cargo documents · Locked after sign-off · CIA Integrity</div></div></div>
       <div class="table-card">
         <div class="table-header"><div class="table-title">BoL Registry</div></div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>BoL Number</th><th>Shipment</th><th>Shipper</th>
-              <th>Issue Date</th><th>Weight (kg)</th><th>Declared Value</th><th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="bol-body">
-            <tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr>
-          </tbody>
-        </table>
+        <table class="data-table"><thead><tr><th>BoL Number</th><th>Shipment</th><th>Shipper</th><th>Issue Date</th><th>Weight (kg)</th><th>Declared Value</th><th>Status</th></tr></thead>
+        <tbody id="bol-body"><tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr></tbody></table>
       </div>
     </div>
 
-    <!-- ═════════════════════════════
-         PAGE: FREIGHT INVOICES
-    ═════════════════════════════ -->
+    <!-- ══════ INVOICES ══════ -->
     <div class="page" id="page-invoices">
-      <div class="page-header">
-        <div>
-          <div class="page-title">FREIGHT INVOICES</div>
-          <div class="page-subtitle">Payment records · ACID paired with Shipment · CHK amount >= 0</div>
-        </div>
-      </div>
+      <div class="page-header"><div><div class="page-title">FREIGHT INVOICES</div><div class="page-subtitle">ACID paired with Shipment · CHK amount >= 0</div></div></div>
       <div class="table-card">
         <div class="table-header"><div class="table-title">Invoice Registry</div></div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Invoice ID</th><th>Shipment</th><th>Customer</th>
-              <th>Amount (USD)</th><th>Due Date</th><th>Payment Status</th><th>Method</th>
-            </tr>
-          </thead>
-          <tbody id="invoices-body">
-            <tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr>
-          </tbody>
-        </table>
+        <table class="data-table"><thead><tr><th>Invoice ID</th><th>Shipment</th><th>Customer</th><th>Amount (USD)</th><th>Due Date</th><th>Payment Status</th><th>Method</th></tr></thead>
+        <tbody id="invoices-body"><tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr></tbody></table>
       </div>
     </div>
 
-    <!-- ═════════════════════════════
-         PAGE: CUSTOMS CLEARANCE
-    ═════════════════════════════ -->
+    <!-- ══════ CUSTOMS ══════ -->
     <div class="page" id="page-customs">
-      <div class="page-header">
-        <div>
-          <div class="page-title">CUSTOMS CLEARANCE</div>
-          <div class="page-subtitle">Cargo inspections · Officer-controlled · CIA Confidentiality</div>
-        </div>
-      </div>
+      <div class="page-header"><div><div class="page-title">CUSTOMS CLEARANCE</div><div class="page-subtitle">Officer-controlled · CIA Confidentiality</div></div></div>
       <div class="table-card">
         <div class="table-header"><div class="table-title">Clearance Registry</div></div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>ID</th><th>Shipment</th><th>Port</th>
-              <th>Officer</th><th>Submitted</th><th>Cleared</th><th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="customs-body">
-            <tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr>
-          </tbody>
-        </table>
+        <table class="data-table"><thead><tr><th>ID</th><th>Shipment</th><th>Port</th><th>Officer</th><th>Submitted</th><th>Cleared</th><th>Status</th></tr></thead>
+        <tbody id="customs-body"><tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr></tbody></table>
       </div>
     </div>
 
-    <!-- ═════════════════════════════
-         PAGE: PORTS
-    ═════════════════════════════ -->
+    <!-- ══════ PORTS ══════ -->
     <div class="page" id="page-ports">
-      <div class="page-header">
-        <div>
-          <div class="page-title">PORTS</div>
-          <div class="page-subtitle">All registered maritime ports · Core anchor entity</div>
-        </div>
-        <button class="btn btn-primary" onclick="openModal('port')">+ Add Port</button>
-      </div>
+      <div class="page-header"><div><div class="page-title">PORTS</div><div class="page-subtitle">Core anchor entity · Referenced by Warehouse</div></div><button class="btn btn-primary" onclick="openModal('port')">+ Add Port</button></div>
       <div class="table-card">
-        <div class="table-header">
-          <div class="table-title">Port Registry</div>
-          <div class="table-actions">
-            <div class="search-box">
-              <span>⌕</span>
-              <input type="text" placeholder="Search ports..." oninput="filterTable('ports-body', this.value)" />
-            </div>
-          </div>
-        </div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Port Code</th><th>Port Name</th><th>City</th>
-              <th>Country</th><th>Coordinates</th><th>Max Capacity</th><th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="ports-body">
-            <tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr>
-          </tbody>
-        </table>
+        <div class="table-header"><div class="table-title">Port Registry</div><div class="table-actions"><div class="search-box"><span>⌕</span><input type="text" placeholder="Search ports..." oninput="filterTable('ports-body',this.value)" /></div></div></div>
+        <table class="data-table"><thead><tr><th>Port Code</th><th>Port Name</th><th>City</th><th>Country</th><th>Coordinates</th><th>Max Capacity</th><th>Warehouses</th></tr></thead>
+        <tbody id="ports-body"><tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr></tbody></table>
       </div>
     </div>
 
-    <!-- ═════════════════════════════
-         PAGE: CUSTOMERS
-    ═════════════════════════════ -->
+    <!-- ══════ CUSTOMERS ══════ -->
     <div class="page" id="page-customers">
-      <div class="page-header">
-        <div>
-          <div class="page-title">CUSTOMERS</div>
-          <div class="page-subtitle">Registered shippers · password_hash · CIA Confidentiality</div>
-        </div>
-        <button class="btn btn-primary" onclick="openModal('customer')">+ Add Customer</button>
-      </div>
+      <div class="page-header"><div><div class="page-title">CUSTOMERS</div><div class="page-subtitle">Registered shippers · password_hash · CIA Confidentiality</div></div><button class="btn btn-primary" onclick="openModal('customer')">+ Add Customer</button></div>
       <div class="table-card">
-        <div class="table-header">
-          <div class="table-title">Customer Registry</div>
-          <div class="table-actions">
-            <div class="search-box">
-              <span>⌕</span>
-              <input type="text" placeholder="Search customers..." oninput="filterTable('customers-body', this.value)" />
-            </div>
-          </div>
-        </div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>ID</th><th>Full Name</th><th>Company</th>
-              <th>Email</th><th>Country</th><th>Status</th><th>Joined</th>
-            </tr>
-          </thead>
-          <tbody id="customers-body">
-            <tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr>
-          </tbody>
-        </table>
+        <div class="table-header"><div class="table-title">Customer Registry</div><div class="table-actions"><div class="search-box"><span>⌕</span><input type="text" placeholder="Search customers..." oninput="filterTable('customers-body',this.value)" /></div></div></div>
+        <table class="data-table"><thead><tr><th>ID</th><th>Full Name</th><th>Company</th><th>Email</th><th>Country</th><th>Status</th><th>Joined</th></tr></thead>
+        <tbody id="customers-body"><tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr></tbody></table>
       </div>
     </div>
 
-    <!-- ═════════════════════════════
-         PAGE: EMPLOYEES
-    ═════════════════════════════ -->
+    <!-- ══════ EMPLOYEES ══════ -->
     <div class="page" id="page-employees">
-      <div class="page-header">
-        <div>
-          <div class="page-title">EMPLOYEES</div>
-          <div class="page-subtitle">Staff roles · Role-based access control · CIA Confidentiality</div>
-        </div>
-        <button class="btn btn-primary" onclick="openModal('employee')">+ Add Employee</button>
-      </div>
+      <div class="page-header"><div><div class="page-title">EMPLOYEES</div><div class="page-subtitle">Role-based access · Warehouse Manager role added · CIA Confidentiality</div></div><button class="btn btn-primary" onclick="openModal('employee')">+ Add Employee</button></div>
       <div class="table-card">
         <div class="table-header"><div class="table-title">Staff Registry</div></div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>ID</th><th>Full Name</th><th>Role</th>
-              <th>Email</th><th>Port</th><th>Active</th><th>Hired</th>
-            </tr>
-          </thead>
-          <tbody id="employees-body">
-            <tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr>
-          </tbody>
-        </table>
+        <table class="data-table"><thead><tr><th>ID</th><th>Full Name</th><th>Role</th><th>Email</th><th>Port</th><th>Active</th><th>Hired</th></tr></thead>
+        <tbody id="employees-body"><tr class="loading-row"><td colspan="7"><span class="spinner"></span> Loading...</td></tr></tbody></table>
       </div>
     </div>
 
   </main>
 </div>
 
-<!-- ═══════════════════════════════════════
-     MODAL
-═══════════════════════════════════════ -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal" id="modal">
     <div class="modal-header">
@@ -576,13 +290,8 @@
   </div>
 </div>
 
-<!-- TOAST CONTAINER -->
 <div class="toast-container" id="toast-container"></div>
 
-<!-- ═══════════════════════════════════════
-     JAVASCRIPT — loaded last
-═══════════════════════════════════════ -->
-<script src="./index.js"></script>
-
+<script src="./js/index.js"></script>
 </body>
 </html>
