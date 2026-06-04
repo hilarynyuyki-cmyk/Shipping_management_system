@@ -10,418 +10,279 @@
 </head>
 <body>
 
-<!-- ═══════════════════════════════ SIDEBAR ═══════════════════════════════ -->
-<nav id="sidebar">
-  <div class="sidebar-logo">
-    <div class="logo-icon">⚓</div>
-    <div>
-      <div class="logo-text">MarineOS</div>
-      <div class="logo-sub">Shipping System</div>
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <span class="anch">⚓</span>
+      <h1>MarineOS</h1>
+      <p>Maritime Shipping Management</p>
+    </div>
+    <div class="login-field">
+      <label>Role</label>
+      <select id="login-role">
+        <option value="">— Select your role —</option>
+        <option value="admin">Admin</option>
+        <option value="port_officer">Port Officer</option>
+        <option value="analyst">Analyst</option>
+        <option value="customs_agent">Customs Agent</option>
+        <option value="warehouse_manager">Warehouse Manager</option>
+      </select>
+    </div>
+    <div class="login-field">
+      <label>Access Code</label>
+      <input type="password" id="login-code" placeholder="Enter your access code" autocomplete="off">
+    </div>
+    <button class="login-btn" onclick="doLogin()">Sign In →</button>
+    <div class="login-err" id="login-err"></div>
+    <div class="codes-section">
+      <p>Access Codes — click to copy</p>
+      <div class="code-row"><span class="code-role">⚙️ Admin</span><span class="code-chip" onclick="copyCode(this,'AdminSecure123!')">AdminSecure123!</span></div>
+      <div class="code-row"><span class="code-role">🚢 Port Officer</span><span class="code-chip" onclick="copyCode(this,'OfficerSecure123!')">OfficerSecure123!</span></div>
+      <div class="code-row"><span class="code-role">📊 Analyst</span><span class="code-chip" onclick="copyCode(this,'AnalystSecure123!')">AnalystSecure123!</span></div>
+      <div class="code-row"><span class="code-role">🛃 Customs Agent</span><span class="code-chip" onclick="copyCode(this,'CustomsSecure123!')">CustomsSecure123!</span></div>
+      <div class="code-row"><span class="code-role">🏭 Warehouse Manager</span><span class="code-chip" onclick="copyCode(this,'WarehouseSecure123!')">WarehouseSecure123!</span></div>
     </div>
   </div>
+</div>
 
-  <div class="sidebar-section">
-    <div class="sidebar-section-label">Overview</div>
-    <button class="nav-item active" data-view="dashboard">
-      <span class="nav-icon">📊</span> Dashboard
-    </button>
-  </div>
-
-  <div class="sidebar-section">
-    <div class="sidebar-section-label">Fleet & Routes</div>
-    <button class="nav-item" data-view="vessels">
-      <span class="nav-icon">🚢</span> Vessels
-    </button>
-    <button class="nav-item" data-view="voyages">
-      <span class="nav-icon">🗺️</span> Voyages
-    </button>
-    <button class="nav-item" data-view="ports">
-      <span class="nav-icon">⚓</span> Ports
-    </button>
-    <button class="nav-item" data-view="portcalls">
-      <span class="nav-icon">🔁</span> Port Calls
-    </button>
-    <button class="nav-item" data-view="gps">
-      <span class="nav-icon">📡</span> Vessel Positions
-    </button>
-  </div>
-
-  <div class="sidebar-section">
-    <div class="sidebar-section-label">Cargo & Logistics</div>
-    <button class="nav-item" data-view="shipments">
-      <span class="nav-icon">📦</span> Shipments
-    </button>
-    <button class="nav-item" data-view="containers">
-      <span class="nav-icon">🟫</span> Containers
-    </button>
-    <button class="nav-item" data-view="warehouses">
-      <span class="nav-icon">🏭</span> Warehouses
-    </button>
-    <button class="nav-item" data-view="manifests">
-      <span class="nav-icon">📋</span> Cargo Manifests
-    </button>
-  </div>
-
-  <div class="sidebar-section">
-    <div class="sidebar-section-label">Documentation</div>
-    <button class="nav-item" data-view="bol">
-      <span class="nav-icon">📄</span> Bills of Lading
-    </button>
-    <button class="nav-item" data-view="invoices">
-      <span class="nav-icon">💳</span> Freight Invoices
-    </button>
-    <button class="nav-item" data-view="customs">
-      <span class="nav-icon">🛃</span> Customs Clearance
-    </button>
-  </div>
-
-  <div class="sidebar-section">
-    <div class="sidebar-section-label">Tracking & People</div>
-    <button class="nav-item" data-view="tracking">
-      <span class="nav-icon">📍</span> Tracking Events
-    </button>
-    <button class="nav-item" data-view="customers">
-      <span class="nav-icon">👤</span> Customers
-    </button>
-    <button class="nav-item" data-view="employees">
-      <span class="nav-icon">👷</span> Employees
-    </button>
-  </div>
-
-  <div class="sidebar-footer">
-    <div style="margin-bottom:8px">
+<!-- APP SHELL -->
+<div id="app-shell">
+  <nav id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">⚓</div>
+      <div><div class="logo-text">MarineOS</div><div class="logo-sub">Shipping System</div></div>
+    </div>
+    <div class="role-badge">
+      <span class="rb-icon" id="rb-icon">👤</span>
+      <div><div class="rb-name" id="rb-name">User</div><div class="rb-label" id="rb-label">ROLE</div></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Overview</div>
+      <button class="nav-item active" data-view="dashboard"><span class="nav-icon">📊</span> Dashboard</button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Fleet &amp; Routes</div>
+      <button class="nav-item" data-view="vessels"><span class="nav-icon">🚢</span> Vessels</button>
+      <button class="nav-item" data-view="voyages"><span class="nav-icon">🗺️</span> Voyages</button>
+      <button class="nav-item" data-view="ports"><span class="nav-icon">⚓</span> Ports</button>
+      <button class="nav-item" data-view="portcalls"><span class="nav-icon">🔁</span> Port Calls</button>
+      <button class="nav-item" data-view="gps"><span class="nav-icon">📡</span> Vessel Positions</button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Cargo &amp; Logistics</div>
+      <button class="nav-item" data-view="shipments"><span class="nav-icon">📦</span> Shipments</button>
+      <button class="nav-item" data-view="containers"><span class="nav-icon">🟫</span> Containers</button>
+      <button class="nav-item" data-view="warehouses"><span class="nav-icon">🏭</span> Warehouses</button>
+      <button class="nav-item" data-view="manifests"><span class="nav-icon">📋</span> Cargo Manifests</button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Documentation</div>
+      <button class="nav-item" data-view="bol"><span class="nav-icon">📄</span> Bills of Lading</button>
+      <button class="nav-item" data-view="invoices"><span class="nav-icon">💳</span> Freight Invoices</button>
+      <button class="nav-item" data-view="customs"><span class="nav-icon">🛃</span> Customs Clearance</button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">People &amp; Tracking</div>
+      <button class="nav-item" data-view="tracking"><span class="nav-icon">📍</span> Tracking Events</button>
+      <button class="nav-item" data-view="customers"><span class="nav-icon">👤</span> Customers</button>
+      <button class="nav-item" data-view="employees"><span class="nav-icon">👷</span> Employees</button>
+    </div>
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="doLogout()">🚪 Sign Out</button>
       <input class="api-url-input" id="api-url" placeholder="http://localhost:3000" value="http://localhost:3000">
+      <div class="api-status" onclick="testConnection()">
+        <div class="api-dot" id="api-dot"></div>
+        <span class="api-status-text" id="api-status-text">Not connected</span>
+        <span style="color:rgba(255,255,255,0.25);font-size:11px">↺</span>
+      </div>
     </div>
-    <div class="api-status" id="api-status-btn" onclick="testConnection()">
-      <div class="api-dot" id="api-dot"></div>
-      <span class="api-status-text" id="api-status-text">Not connected</span>
-      <span style="color:rgba(255,255,255,0.3);font-size:11px">↺</span>
+  </nav>
+
+  <div id="main">
+    <div id="topbar">
+      <div class="page-title" id="page-title">Dashboard</div>
+      <div class="topbar-actions" id="topbar-actions"></div>
     </div>
-  </div>
-</nav>
+    <div id="content">
 
-<!-- ═══════════════════════════════ MAIN ══════════════════════════════════ -->
-<div id="main">
-  <div id="topbar">
-    <div class="page-title" id="page-title">Dashboard</div>
-    <div class="topbar-actions" id="topbar-actions"></div>
-  </div>
-
-  <div id="content">
-
-    <!-- ─── DASHBOARD ─────────────────────────────────────────── -->
-    <div class="view active" id="view-dashboard">
-      <div class="stat-grid" id="dash-stats">
-        <div class="stat-card"><div class="s-icon">🚢</div><div class="s-label">Vessels</div><div class="s-value" id="s-vessels">—</div></div>
-        <div class="stat-card"><div class="s-icon">🗺️</div><div class="s-label">Voyages</div><div class="s-value" id="s-voyages">—</div></div>
-        <div class="stat-card"><div class="s-icon">📦</div><div class="s-label">Shipments</div><div class="s-value" id="s-shipments">—</div></div>
-        <div class="stat-card"><div class="s-icon">👤</div><div class="s-label">Customers</div><div class="s-value" id="s-customers">—</div></div>
-        <div class="stat-card"><div class="s-icon">🛃</div><div class="s-label">Pending Customs</div><div class="s-value" id="s-customs">—</div></div>
-        <div class="stat-card"><div class="s-icon">🏭</div><div class="s-label">Warehouses</div><div class="s-value" id="s-warehouses">—</div></div>
+      <!-- DASHBOARD -->
+      <div class="view active" id="view-dashboard">
+        <div class="stat-grid">
+          <div class="stat-card"><div class="s-icon">🚢</div><div class="s-label">Vessels</div><div class="s-value" id="s-vessels">—</div></div>
+          <div class="stat-card"><div class="s-icon">🗺️</div><div class="s-label">Voyages</div><div class="s-value" id="s-voyages">—</div></div>
+          <div class="stat-card"><div class="s-icon">📦</div><div class="s-label">Shipments</div><div class="s-value" id="s-shipments">—</div></div>
+          <div class="stat-card"><div class="s-icon">👤</div><div class="s-label">Customers</div><div class="s-value" id="s-customers">—</div></div>
+          <div class="stat-card"><div class="s-icon">🛃</div><div class="s-label">Pending Customs</div><div class="s-value" id="s-customs">—</div></div>
+          <div class="stat-card"><div class="s-icon">🏭</div><div class="s-label">Warehouses</div><div class="s-value" id="s-warehouses">—</div></div>
+        </div>
+        <div class="two-col">
+          <div class="panel"><div class="panel-header"><span class="panel-title">Recent Shipments</span></div><div id="dash-shipments"><div class="loading"><div class="spinner"></div></div></div></div>
+          <div class="panel"><div class="panel-header"><span class="panel-title">Recent Tracking Events</span></div><div id="dash-tracking"><div class="loading"><div class="spinner"></div></div></div></div>
+        </div>
       </div>
 
-      <div class="two-col">
-        <div class="panel">
-          <div class="panel-header"><span class="panel-title">Recent Shipments</span></div>
-          <div id="dash-shipments"><div class="loading"><div class="spinner"></div></div></div>
+      <!-- VESSELS -->
+      <div class="view" id="view-vessels">
+        <div class="filter-bar"><div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search vessels…" id="vessel-search" oninput="filterTable('vessel-tbody','vessel-search')"></div></div>
+        <div class="panel"><div class="tbl-wrap"><table>
+          <thead><tr><th>Name</th><th>Type</th><th>IMO Number</th><th>Flag</th><th>Gross Tonnage</th><th>TEU</th><th>Build Year</th><th>Owner</th><th>Status</th><th id="vessel-th-act"></th></tr></thead>
+          <tbody id="vessel-tbody"><tr><td colspan="10"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
+        </table></div></div>
+      </div>
+
+      <!-- VOYAGES -->
+      <div class="view" id="view-voyages">
+        <div class="filter-bar"><div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search voyages…" id="voyage-search" oninput="filterTable('voyage-tbody','voyage-search')"></div></div>
+        <div class="panel"><div class="tbl-wrap"><table>
+          <thead><tr><th>Voyage Code</th><th>Vessel</th><th>Origin</th><th>Destination</th><th>Departure</th><th>Est. Arrival</th><th>Distance (nm)</th><th>Status</th><th id="voyage-th-act"></th></tr></thead>
+          <tbody id="voyage-tbody"><tr><td colspan="9"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
+        </table></div></div>
+      </div>
+
+      <!-- PORTS -->
+      <div class="view" id="view-ports">
+        <div class="filter-bar"><div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search ports…" id="port-search" oninput="filterTable('port-tbody','port-search')"></div></div>
+        <div class="panel"><div class="tbl-wrap"><table>
+          <thead><tr><th>Port Name</th><th>Code</th><th>City</th><th>Country</th><th>Coordinates</th><th>Timezone</th><th>Max Capacity</th><th id="port-th-act"></th></tr></thead>
+          <tbody id="port-tbody"><tr><td colspan="8"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
+        </table></div></div>
+      </div>
+
+      <!-- PORT CALLS -->
+      <div class="view" id="view-portcalls">
+        <div class="filter-bar"><div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Filter port calls…" id="portcall-search" oninput="filterTable('portcall-tbody','portcall-search')"></div></div>
+        <div class="panel"><div class="tbl-wrap"><table>
+          <thead><tr><th>Voyage Code</th><th>Port</th><th>Sequence</th><th>Arrival</th><th>Departure</th><th>Purpose</th><th>Berth</th></tr></thead>
+          <tbody id="portcall-tbody"><tr><td colspan="7"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
+        </table></div></div>
+      </div>
+
+      <!-- GPS -->
+      <div class="view" id="view-gps">
+        <div style="height:160px;background:linear-gradient(135deg,#e8f2ff,#dbeafe);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;border:1px solid var(--gray-200);margin-bottom:20px">
+          <span style="font-size:32px">🗺️</span><span style="font-size:14px;font-weight:500;color:var(--navy-light)">Live Vessel Positions</span><span style="font-size:12px;color:var(--gray-400)">GPS data from API</span>
         </div>
         <div class="panel">
-          <div class="panel-header"><span class="panel-title">Recent Tracking Events</span></div>
-          <div id="dash-tracking"><div class="loading"><div class="spinner"></div></div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ─── VESSELS ───────────────────────────────────────────── -->
-    <div class="view" id="view-vessels">
-      <div class="filter-bar">
-        <div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search vessels…" id="vessel-search" oninput="filterTable('vessel-tbody','vessel-search')"></div>
-        <select id="vessel-status-filter" onchange="filterTable('vessel-tbody','vessel-search')">
-          <option value="">All statuses</option>
-          <option>At Sea</option><option>In Port</option><option>Under Maintenance</option><option>Docked</option>
-        </select>
-      </div>
-      <div class="panel">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>Name</th><th>Type</th><th>IMO Number</th><th>Flag</th><th>Tonnage</th><th>Capacity (TEU)</th><th>Status</th><th>Actions</th></tr></thead>
-            <tbody id="vessel-tbody"><tr><td colspan="8" class="loading"><div class="spinner"></div></td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- ─── VOYAGES ───────────────────────────────────────────── -->
-    <div class="view" id="view-voyages">
-      <div class="filter-bar">
-        <div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search voyages…" id="voyage-search" oninput="filterTable('voyage-tbody','voyage-search')"></div>
-        <select id="voyage-status-filter" onchange="filterTable('voyage-tbody','voyage-search')">
-          <option value="">All statuses</option>
-          <option>Scheduled</option><option>Departed</option><option>In Transit</option><option>Arrived</option><option>Cancelled</option>
-        </select>
-      </div>
-      <div class="panel">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>Voyage Code</th><th>Vessel</th><th>Origin</th><th>Destination</th><th>Departure</th><th>Est. Arrival</th><th>Distance (nm)</th><th>Status</th><th>Actions</th></tr></thead>
-            <tbody id="voyage-tbody"><tr><td colspan="9" class="loading"><div class="spinner"></div></td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- ─── PORTS ─────────────────────────────────────────────── -->
-    <div class="view" id="view-ports">
-      <div class="filter-bar">
-        <div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search ports…" id="port-search" oninput="filterTable('port-tbody','port-search')"></div>
-      </div>
-      <div class="panel">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>Port Name</th><th>Code</th><th>City</th><th>Country</th><th>Coordinates</th><th>Timezone</th><th>Max Capacity</th><th>Actions</th></tr></thead>
-            <tbody id="port-tbody"><tr><td colspan="8" class="loading"><div class="spinner"></div></td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- ─── PORT CALLS ────────────────────────────────────────── -->
-    <div class="view" id="view-portcalls">
-      <div class="filter-bar">
-        <div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Filter port calls…" id="portcall-search" oninput="filterTable('portcall-tbody','portcall-search')"></div>
-      </div>
-      <div class="panel">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>Voyage Code</th><th>Port</th><th>Sequence</th><th>Arrival</th><th>Departure</th><th>Purpose</th><th>Berth</th></tr></thead>
-            <tbody id="portcall-tbody"><tr><td colspan="7" class="loading"><div class="spinner"></div></td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- ─── GPS / VESSEL POSITIONS ───────────────────────────── -->
-    <div class="view" id="view-gps">
-      <div class="map-placeholder" style="margin-bottom:20px">
-        <span style="font-size:32px">🗺️</span>
-        <span style="font-size:14px;font-weight:500;color:var(--navy-light)">Live Vessel Positions</span>
-        <span style="font-size:12px">GPS coordinates loaded from API below</span>
-      </div>
-      <div class="panel">
-        <div class="panel-header">
-          <span class="panel-title">Position Records</span>
-          <button class="btn btn-primary btn-sm" onclick="openModal('gps')">+ Log Position</button>
-        </div>
-        <div class="tbl-wrap">
-          <table>
+          <div class="panel-header"><span class="panel-title">Position Records</span><span id="gps-add-btn"></span></div>
+          <div class="tbl-wrap"><table>
             <thead><tr><th>Vessel</th><th>Voyage</th><th>Latitude</th><th>Longitude</th><th>Speed (kn)</th><th>Heading (°)</th><th>Recorded At</th></tr></thead>
-            <tbody id="gps-tbody"><tr><td colspan="7" class="loading"><div class="spinner"></div></td></tr></tbody>
-          </table>
+            <tbody id="gps-tbody"><tr><td colspan="7"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
+          </table></div>
         </div>
       </div>
-    </div>
 
-    <!-- ─── SHIPMENTS ─────────────────────────────────────────── -->
-    <div class="view" id="view-shipments">
-      <div class="filter-bar">
-        <div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search shipments…" id="shipment-search" oninput="filterTable('shipment-tbody','shipment-search')"></div>
-        <select id="shipment-status-filter" onchange="filterTable('shipment-tbody','shipment-search')">
-          <option value="">All statuses</option>
-          <option>Booked</option><option>Loading</option><option>In Transit</option><option>In Warehouse</option><option>Customs</option><option>Delivered</option><option>Cancelled</option>
-        </select>
+      <!-- SHIPMENTS -->
+      <div class="view" id="view-shipments">
+        <div class="filter-bar"><div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search shipments…" id="shipment-search" oninput="filterTable('shipment-tbody','shipment-search')"></div></div>
+        <div class="panel"><div class="tbl-wrap"><table>
+          <thead><tr><th>ID</th><th>Customer</th><th>Voyage</th><th>Origin</th><th>Destination</th><th>Cargo Type</th><th>Weight (kg)</th><th>Warehouse</th><th>Status</th><th id="shipment-th-act"></th></tr></thead>
+          <tbody id="shipment-tbody"><tr><td colspan="10"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
+        </table></div></div>
       </div>
-      <div class="panel">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>ID</th><th>Customer</th><th>Voyage</th><th>Origin</th><th>Destination</th><th>Cargo Type</th><th>Weight (kg)</th><th>Warehouse</th><th>Status</th><th>Actions</th></tr></thead>
-            <tbody id="shipment-tbody"><tr><td colspan="10" class="loading"><div class="spinner"></div></td></tr></tbody>
-          </table>
+
+      <!-- CONTAINERS -->
+      <div class="view" id="view-containers">
+        <div class="filter-bar"><div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search containers…" id="container-search" oninput="filterTable('container-tbody','container-search')"></div></div>
+        <div class="panel"><div class="tbl-wrap"><table>
+          <thead><tr><th>Code</th><th>Type</th><th>Max Weight</th><th>Current Weight</th><th>Shipment</th><th>Vessel</th><th>Warehouse</th><th>Status</th><th id="container-th-act"></th></tr></thead>
+          <tbody id="container-tbody"><tr><td colspan="9"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
+        </table></div></div>
+      </div>
+
+      <!-- WAREHOUSES -->
+      <div class="view" id="view-warehouses">
+        <div id="warehouse-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:20px"></div>
+        <div class="panel">
+          <div class="panel-header"><span class="panel-title">All Warehouses</span></div>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Name</th><th>Code</th><th>Port</th><th>City</th><th>Type</th><th>Capacity</th><th>Load</th><th>Manager</th><th>Status</th><th id="warehouse-th-act"></th></tr></thead>
+            <tbody id="warehouse-tbody"><tr><td colspan="10"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
+          </table></div>
         </div>
       </div>
-    </div>
 
-    <!-- ─── CONTAINERS ────────────────────────────────────────── -->
-    <div class="view" id="view-containers">
-      <div class="filter-bar">
-        <div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search containers…" id="container-search" oninput="filterTable('container-tbody','container-search')"></div>
-        <select id="container-status-filter" onchange="filterTable('container-tbody','container-search')">
-          <option value="">All statuses</option>
-          <option>Available</option><option>In Transit</option><option>At Port</option><option>In Warehouse</option><option>Under Inspection</option>
-        </select>
+      <!-- MANIFESTS -->
+      <div class="view" id="view-manifests">
+        <div class="filter-bar"><div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search manifests…" id="manifest-search" oninput="filterTable('manifest-tbody','manifest-search')"></div></div>
+        <div class="panel"><div class="tbl-wrap"><table>
+          <thead><tr><th>ID</th><th>Voyage</th><th>Container</th><th>Shipment</th><th>Cargo Description</th><th>Weight (kg)</th><th>Hazmat</th><th>Hazmat Class</th><th>Created</th></tr></thead>
+          <tbody id="manifest-tbody"><tr><td colspan="9"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
+        </table></div></div>
       </div>
-      <div class="panel">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>Code</th><th>Type</th><th>Max Weight (kg)</th><th>Current Weight</th><th>Shipment ID</th><th>Vessel ID</th><th>Warehouse</th><th>Status</th><th>Actions</th></tr></thead>
-            <tbody id="container-tbody"><tr><td colspan="9" class="loading"><div class="spinner"></div></td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
 
-    <!-- ─── WAREHOUSES ────────────────────────────────────────── -->
-    <div class="view" id="view-warehouses">
-      <div id="warehouse-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:20px"></div>
-      <div class="panel">
-        <div class="panel-header"><span class="panel-title">All Warehouses</span></div>
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>Name</th><th>Code</th><th>Port</th><th>City</th><th>Type</th><th>Capacity</th><th>Load</th><th>Manager</th><th>Status</th><th>Actions</th></tr></thead>
-            <tbody id="warehouse-tbody"><tr><td colspan="10" class="loading"><div class="spinner"></div></td></tr></tbody>
-          </table>
-        </div>
+      <!-- BILLS OF LADING -->
+      <div class="view" id="view-bol">
+        <div class="filter-bar"><div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search bills…" id="bol-search" oninput="filterTable('bol-tbody','bol-search')"></div></div>
+        <div class="panel"><div class="tbl-wrap"><table>
+          <thead><tr><th>BOL Number</th><th>Shipment</th><th>Voyage</th><th>Shipper</th><th>Issue Date</th><th>Weight (kg)</th><th>Declared Value</th><th>Status</th><th id="bol-th-act"></th></tr></thead>
+          <tbody id="bol-tbody"><tr><td colspan="9"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
+        </table></div></div>
       </div>
-    </div>
 
-    <!-- ─── CARGO MANIFESTS ───────────────────────────────────── -->
-    <div class="view" id="view-manifests">
-      <div class="filter-bar">
-        <div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search manifests…" id="manifest-search" oninput="filterTable('manifest-tbody','manifest-search')"></div>
+      <!-- INVOICES -->
+      <div class="view" id="view-invoices">
+        <div class="filter-bar"><div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search invoices…" id="invoice-search" oninput="filterTable('invoice-tbody','invoice-search')"></div></div>
+        <div class="panel"><div class="tbl-wrap"><table>
+          <thead><tr><th>Invoice ID</th><th>Shipment</th><th>Customer</th><th>Amount (USD)</th><th>Currency</th><th>Due Date</th><th>Payment Status</th><th>Payment Date</th><th>Method</th><th id="invoice-th-act"></th></tr></thead>
+          <tbody id="invoice-tbody"><tr><td colspan="10"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
+        </table></div></div>
       </div>
-      <div class="panel">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>Manifest ID</th><th>Voyage ID</th><th>Container ID</th><th>Shipment ID</th><th>Cargo Description</th><th>Weight (kg)</th><th>Hazmat</th><th>Hazmat Class</th><th>Created</th></tr></thead>
-            <tbody id="manifest-tbody"><tr><td colspan="9" class="loading"><div class="spinner"></div></td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
 
-    <!-- ─── BILLS OF LADING ───────────────────────────────────── -->
-    <div class="view" id="view-bol">
-      <div class="filter-bar">
-        <div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search bills…" id="bol-search" oninput="filterTable('bol-tbody','bol-search')"></div>
-        <select id="bol-status-filter" onchange="filterTable('bol-tbody','bol-search')">
-          <option value="">All statuses</option>
-          <option>Draft</option><option>Issued</option><option>Signed</option><option>Locked</option><option>Disputed</option>
-        </select>
+      <!-- CUSTOMS CLEARANCE — notes field removed -->
+      <div class="view" id="view-customs">
+        <div class="filter-bar"><div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search customs records…" id="customs-search" oninput="filterTable('customs-tbody','customs-search')"></div></div>
+        <div class="panel"><div class="tbl-wrap"><table>
+          <thead><tr><th>Clearance ID</th><th>Shipment</th><th>Port</th><th>Officer</th><th>Submission</th><th>Clearance Date</th><th>Status</th><th id="customs-th-act"></th></tr></thead>
+          <tbody id="customs-tbody"><tr><td colspan="8"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
+        </table></div></div>
       </div>
-      <div class="panel">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>BOL Number</th><th>Shipment ID</th><th>Voyage ID</th><th>Shipper</th><th>Issue Date</th><th>Weight (kg)</th><th>Declared Value (USD)</th><th>Status</th><th>Update Status</th></tr></thead>
-            <tbody id="bol-tbody"><tr><td colspan="9" class="loading"><div class="spinner"></div></td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
 
-    <!-- ─── FREIGHT INVOICES ──────────────────────────────────── -->
-    <div class="view" id="view-invoices">
-      <div class="filter-bar">
-        <div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search invoices…" id="invoice-search" oninput="filterTable('invoice-tbody','invoice-search')"></div>
-        <select id="invoice-status-filter" onchange="filterTable('invoice-tbody','invoice-search')">
-          <option value="">All statuses</option>
-          <option>Unpaid</option><option>Paid</option><option>Overdue</option><option>Disputed</option><option>Refunded</option>
-        </select>
+      <!-- TRACKING -->
+      <div class="view" id="view-tracking">
+        <div class="filter-bar"><div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search events…" id="tracking-search" oninput="filterTable('tracking-tbody','tracking-search')"></div></div>
+        <div class="panel"><div class="tbl-wrap"><table>
+          <thead><tr><th>Event ID</th><th>Shipment</th><th>Event Type</th><th>Port</th><th>Warehouse</th><th>Recorded By</th><th>DateTime</th><th>Description</th></tr></thead>
+          <tbody id="tracking-tbody"><tr><td colspan="8"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
+        </table></div></div>
       </div>
-      <div class="panel">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>Invoice ID</th><th>Shipment ID</th><th>Customer</th><th>Amount (USD)</th><th>Currency</th><th>Due Date</th><th>Payment Status</th><th>Payment Date</th><th>Method</th><th>Update Payment</th></tr></thead>
-            <tbody id="invoice-tbody"><tr><td colspan="10" class="loading"><div class="spinner"></div></td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
 
-    <!-- ─── CUSTOMS CLEARANCE ─────────────────────────────────── -->
-    <div class="view" id="view-customs">
-      <div class="filter-bar">
-        <div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search customs records…" id="customs-search" oninput="filterTable('customs-tbody','customs-search')"></div>
-        <select id="customs-status-filter" onchange="filterTable('customs-tbody','customs-search')">
-          <option value="">All statuses</option>
-          <option>Pending</option><option>Under Review</option><option>Cleared</option><option>Rejected</option><option>Hold</option>
-        </select>
+      <!-- CUSTOMERS -->
+      <div class="view" id="view-customers">
+        <div class="filter-bar"><div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search customers…" id="customer-search" oninput="filterTable('customer-tbody','customer-search')"></div></div>
+        <div class="panel"><div class="tbl-wrap"><table>
+          <thead><tr><th>Name</th><th>Company</th><th>Email</th><th>Phone</th><th>Country</th><th>Status</th><th>Joined</th><th id="customer-th-act"></th></tr></thead>
+          <tbody id="customer-tbody"><tr><td colspan="8"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
+        </table></div></div>
       </div>
-      <div class="panel">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>Clearance ID</th><th>Shipment ID</th><th>Port</th><th>Officer</th><th>Submission</th><th>Clearance Date</th><th>Status</th><th>Notes</th><th>Update Status</th></tr></thead>
-            <tbody id="customs-tbody"><tr><td colspan="9" class="loading"><div class="spinner"></div></td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
 
-    <!-- ─── TRACKING EVENTS ───────────────────────────────────── -->
-    <div class="view" id="view-tracking">
-      <div class="filter-bar">
-        <div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search events…" id="tracking-search" oninput="filterTable('tracking-tbody','tracking-search')"></div>
-        <select id="tracking-event-filter" onchange="filterTable('tracking-tbody','tracking-search')">
-          <option value="">All event types</option>
-          <option>Booked</option><option>Departed</option><option>Arrived</option><option>Moved to Warehouse</option>
-          <option>Released from Warehouse</option><option>Customs Hold</option><option>Cleared</option><option>Delivered</option>
-        </select>
+      <!-- EMPLOYEES -->
+      <div class="view" id="view-employees">
+        <div class="filter-bar"><div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search employees…" id="employee-search" oninput="filterTable('employee-tbody','employee-search')"></div></div>
+        <div class="panel"><div class="tbl-wrap"><table>
+          <thead><tr><th>Name</th><th>Role</th><th>Email</th><th>Port</th><th>Hire Date</th><th>Active</th><th id="employee-th-act"></th></tr></thead>
+          <tbody id="employee-tbody"><tr><td colspan="7"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
+        </table></div></div>
       </div>
-      <div class="panel">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>Event ID</th><th>Shipment ID</th><th>Event Type</th><th>Port</th><th>Warehouse</th><th>Recorded By</th><th>DateTime</th><th>Description</th></tr></thead>
-            <tbody id="tracking-tbody"><tr><td colspan="8" class="loading"><div class="spinner"></div></td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
 
-    <!-- ─── CUSTOMERS ─────────────────────────────────────────── -->
-    <div class="view" id="view-customers">
-      <div class="filter-bar">
-        <div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search customers…" id="customer-search" oninput="filterTable('customer-tbody','customer-search')"></div>
-        <select id="customer-status-filter" onchange="filterTable('customer-tbody','customer-search')">
-          <option value="">All statuses</option><option>Active</option><option>Suspended</option><option>Pending</option>
-        </select>
-      </div>
-      <div class="panel">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>Name</th><th>Company</th><th>Email</th><th>Phone</th><th>Country</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead>
-            <tbody id="customer-tbody"><tr><td colspan="8" class="loading"><div class="spinner"></div></td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    </div><!-- #content -->
+  </div><!-- #main -->
+</div><!-- #app-shell -->
 
-    <!-- ─── EMPLOYEES ─────────────────────────────────────────── -->
-    <div class="view" id="view-employees">
-      <div class="filter-bar">
-        <div class="search-box"><span class="search-icon">🔍</span><input type="text" placeholder="Search employees…" id="employee-search" oninput="filterTable('employee-tbody','employee-search')"></div>
-        <select id="employee-role-filter" onchange="filterTable('employee-tbody','employee-search')">
-          <option value="">All roles</option>
-          <option>Admin</option><option>Port Officer</option><option>Captain</option><option>Customs Agent</option><option>Analyst</option><option>Warehouse Manager</option>
-        </select>
-      </div>
-      <div class="panel">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>Name</th><th>Role</th><th>Email</th><th>Port</th><th>Hire Date</th><th>Active</th><th>Actions</th></tr></thead>
-            <tbody id="employee-tbody"><tr><td colspan="7" class="loading"><div class="spinner"></div></td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- #content -->
-</div><!-- #main -->
-
-<!-- ═══════════════════════════════ MODALS ═══════════════════════════════ -->
-
+<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
-  <div class="modal" id="modal-box">
+  <div class="modal">
     <div class="modal-header">
       <span class="modal-title" id="modal-title">Add Record</span>
-      <button class="btn btn-secondary btn-sm btn-icon" onclick="closeModal()">✕</button>
+      <button class="btn btn-secondary btn-sm" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body" id="modal-body"></div>
-    <div class="modal-footer" id="modal-footer">
+    <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
       <button class="btn btn-primary" id="modal-submit-btn" onclick="submitModal()">Save</button>
     </div>
   </div>
 </div>
-
-<!-- ═══════════════════════════════ TOAST ════════════════════════════════ -->
 <div id="toast-container"></div>
 <script src="./index.js"></script>
 </body>
